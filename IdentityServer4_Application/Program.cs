@@ -20,7 +20,11 @@ namespace IdentityServer4_Application
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                   
+
+                    webBuilder.UseIISIntegration();
                     webBuilder.UseStartup<Startup>();
+                  
                 });
     }
 }

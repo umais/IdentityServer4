@@ -25,6 +25,10 @@ namespace IdentityServer4_Application
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<IISOptions>(options => {
+                options.AutomaticAuthentication = false;
+            
+            });
             services.AddMvc(option => option.EnableEndpointRouting = false);
  
              var config = new ConfigurationBuilder()
@@ -37,8 +41,10 @@ namespace IdentityServer4_Application
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
+
         //             .AddInMemoryApiResources(Config.Apis)
         //.AddInMemoryClients(Config.Clients);
+        
         .AddConfigurationStore(options =>
         {
             options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
@@ -53,6 +59,7 @@ namespace IdentityServer4_Application
 
 
          }
+         
         )
          
          
